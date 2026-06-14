@@ -1,0 +1,59 @@
+<svg class="atom" viewBox="0 0 470 470" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      <style xmlns="http://www.w3.org/1999/xhtml">:root { --color-nucleus: #FF6600; --color-electron: #FF3333; --color-orbit-dark: #003366; --color-orbit-light: #6699CC; }* { margin: 0px; padding: 0px; box-sizing: border-box; }body { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: rgb(255, 255, 255); }.loader { width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; }.atom { width: 100%; height: 100%; animation: 0.8s ease-out forwards fadeIn; }@keyframes fadeIn { 
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}.orbits { transform-origin: 235px 235px; }.orbit { fill: none; opacity: 0.7; }.orbit-container-1, .orbit-container-2, .orbit-container-3 { transform-origin: 235px 235px; }.orbit-container-1 { transform: rotate(0deg); }.orbit-container-2 { transform: rotate(60deg); }.orbit-container-3 { transform: rotate(120deg); }.orbit-1 { stroke: var(--color-orbit-dark); animation: 12s linear infinite rotateOrbit; transform-origin: 235px 235px; }.orbit-2 { stroke: var(--color-orbit-light); animation: 12s linear infinite rotateOrbitReverse; transform-origin: 235px 235px; }.orbit-3 { stroke: var(--color-orbit-dark); opacity: 0.5; animation: 12s linear infinite rotateOrbit; transform-origin: 235px 235px; }@keyframes rotateOrbit { 
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}@keyframes rotateOrbitReverse { 
+  0% { transform: rotate(60deg); }
+  100% { transform: rotate(-300deg); }
+}.nucleus { animation: 1.8s ease-in-out 1.1s infinite pulse; }@keyframes pulse { 
+  0%,100% { r: 25px; filter: drop-shadow(rgba(255, 102, 0, 0.4) 0px 0px 0px); }
+  50% { r: 27px; filter: drop-shadow(rgba(255, 102, 0, 0.6) 0px 0px 8px); }
+}.electron-group { animation: 12s linear infinite rotateOrbit; transform-origin: 235px 235px; }.electron-group-2 { animation: 12s linear -6s infinite rotateOrbit; transform-origin: 235px 235px; transform: rotate(60deg); }.electron { animation: 12s ease-in-out infinite electronGlow; }@keyframes electronGlow { 
+  0%,100% { filter: drop-shadow(rgba(255, 51, 51, 0.8) 0px 0px 4px); }
+  50% { filter: drop-shadow(rgb(255, 51, 51) 0px 0px 8px); }
+}@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}</style></defs>
+      
+      <!-- Orbit Rings -->
+      <g class="orbits">
+      <!-- Ring 1 at 0° -->
+      <g class="orbit-container-1">
+        <ellipse class="orbit orbit-1" cx="235" cy="235" rx="130" ry="90" stroke-width="6"/>
+      </g>
+        
+      <!-- Ring 2 at 60° -->
+      <g class="orbit-container-2">
+        <ellipse class="orbit orbit-2" cx="235" cy="235" rx="130" ry="90" stroke-width="6"/>
+      </g>
+        
+      <!-- Ring 3 at 120° -->
+      <g class="orbit-container-3">
+        <ellipse class="orbit orbit-3" cx="235" cy="235" rx="130" ry="90" stroke-width="6"/>
+      </g>
+        
+      <!-- Electron particle (orbits with orbit-1) -->
+      <g class="electron-group">
+        <circle class="electron" cx="365" cy="235" r="12" style="fill: var(--color-electron);"/>
+      </g>
+      
+      <!-- Second electron particle (orbits with orbit-2) -->
+      <g class="electron-group-2">
+        <circle class="electron" cx="365" cy="235" r="12" style="fill: var(--color-electron);"/>
+      </g>
+      </g>
+      
+      <!-- Nucleus -->
+      <circle class="nucleus" cx="235" cy="235" r="25" style="fill: var(--color-nucleus); animation: auto;" filter="url(#glow)"/>
+    </svg>
