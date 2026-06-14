@@ -1,51 +1,247 @@
-# dash-ui
+# @edgar-treischl/dash-ui
 
-Reusable React UI components for school data visualization.
+Reusable React 19 UI components for school data visualization. Built with TypeScript, optimized for performance, and published to GitHub Packages.
 
-## Quick Start
+## ✨ Features
+
+- ✅ **React 19** - Latest React features and performance improvements
+- ✅ **TypeScript** - Full type support with included definitions
+- ✅ **Dual Format** - ESM and CommonJS for maximum compatibility
+- ✅ **Lightweight** - No external dependencies (React is peer dependency)
+- ✅ **Tree-Shakeable** - Only import what you need
+- ✅ **Performance Optimized** - Components use memo() to prevent unnecessary re-renders
+- ✅ **CI/CD Ready** - Automatic publishing to GitHub Packages
+
+---
+
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
-# Install from GitHub
-pnpm add github:edgar-treischl/dash-master/packages/ui
+# Option 1: Direct from GitHub (Quick development)
+pnpm add github:edgar-treischl/dash-ui
 
-# Or from GitHub Packages (requires authentication)
+# Option 2: GitHub Packages (Production/CI-CD)
 pnpm add @edgar-treischl/dash-ui
 ```
 
-```typescript
-import { BarPlot } from 'dash-ui'
+### Usage
 
-<BarPlot 
-  data={[
-    { type: 'GS', count: 150, percent: 45.2 },
-    { type: 'MS', count: 120, percent: 38.7 },
-  ]} 
-  year="2024/25" 
-/>
+```typescript
+import { BarPlot } from '@edgar-treischl/dash-ui'
+
+export function MyComponent() {
+  const data = [
+    { type: 'GS' as const, count: 150, percent: 45.2 },
+    { type: 'MS' as const, count: 120, percent: 38.7 },
+    { type: 'RS' as const, count: 89, percent: 28.5 },
+  ]
+
+  return <BarPlot data={data} year="2024/25" />
+}
 ```
 
-## Components
+---
 
-- **BarPlot** - Horizontal bar chart for school retention data visualization
+## 📦 Installation Options
 
-## Installation & Usage
+### Option 1: Direct from GitHub Repository
 
-See [USAGE.md](./USAGE.md) for detailed installation instructions and component documentation.
+Install directly from the dash-ui repository:
 
-## Features
+```bash
+# Using pnpm
+pnpm add github:edgar-treischl/dash-ui
 
-- ✅ Built with React 19
-- ✅ Full TypeScript support with types included
-- ✅ ESM and CommonJS formats
-- ✅ Lightweight with no external dependencies (except React)
-- ✅ Tree-shakeable
-- ✅ Optimized with memo() for performance
+# Using npm
+npm install github:edgar-treischl/dash-ui
 
-## Requirements
+# Using yarn
+yarn add github:edgar-treischl/dash-ui
+```
 
-- React 19.0+
-- React-DOM 19.0+
+**Using specific version or branch:**
+```bash
+# Install from specific branch
+pnpm add github:edgar-treischl/dash-ui#main
 
-## License
+# Install from specific tag/release
+pnpm add github:edgar-treischl/dash-ui#v1.0.0
+```
+
+**Update to latest:**
+```bash
+pnpm update @edgar-treischl/dash-ui
+```
+
+---
+
+### Option 2: GitHub Packages Registry (Recommended for CI/CD)
+
+For automated deployments and production installations, use GitHub Packages.
+
+#### Setup (One-time)
+
+1. **Create a Personal Access Token (PAT)** in GitHub:
+   - Go to Settings → Developer settings → Personal access tokens → Tokens (classic)
+   - Create new token with `read:packages` scope
+   - Copy the token
+
+2. **Create `.npmrc` file** in your project root:
+   ```
+   @edgar-treischl:registry=https://npm.pkg.github.com
+   //npm.pkg.github.com/:_authToken=YOUR_PERSONAL_ACCESS_TOKEN
+   ```
+
+   Or set globally:
+   ```bash
+   npm config set @edgar-treischl:registry https://npm.pkg.github.com
+   npm config set //npm.pkg.github.com/:_authToken YOUR_PERSONAL_ACCESS_TOKEN
+   ```
+
+#### Install from GitHub Packages
+
+```bash
+pnpm add @edgar-treischl/dash-ui
+```
+
+---
+
+### CI/CD with GitHub Packages
+
+The library automatically publishes to GitHub Packages on:
+- **Every push to main branch** - Pre-release version
+- **Every version tag** (e.g., `v1.0.1`) - Stable release
+
+To publish a new release:
+```bash
+# 1. Update version in package.json
+# 2. Create and push a git tag
+git tag v1.0.1
+git push origin v1.0.1
+# → Automatically published to GitHub Packages!
+```
+
+---
+
+## 📚 Available Components
+
+### BarPlot
+
+Visualize school retention data with a horizontal bar chart.
+
+**Props:**
+```typescript
+interface BarPlotProps {
+  data: BarData[]      // Array of data points
+  year: string         // School year (e.g., "2024/25")
+  maxPercent?: number  // Optional: max percentage for scaling
+}
+
+interface BarData {
+  type: SchoolType     // 'GS' | 'MS' | 'RS' | 'GY' | 'IGS'
+  count: number        // Number of students
+  percent: number      // Retention percentage
+}
+```
+
+**Example:**
+```typescript
+import { BarPlot } from '@edgar-treischl/dash-ui'
+
+function MyComponent() {
+  const data = [
+    { type: 'GS' as const, count: 150, percent: 45.2 },
+    { type: 'MS' as const, count: 120, percent: 38.7 },
+    { type: 'RS' as const, count: 89, percent: 28.5 },
+  ]
+
+  return <BarPlot data={data} year="2024/25" />
+}
+```
+
+---
+
+### Supported School Types
+
+- **GS** - Grundschulen (Primary Schools)
+- **MS** - Mittelschulen (Middle Schools)
+- **RS** - Realschulen (Secondary Schools)
+- **GY** - Gymnasien (Gymnasia)
+- **IGS** - Integrierte Gesamtschulen (Integrated Comprehensive Schools)
+
+---
+
+## 📋 Requirements
+
+- **React 19.0+** (peer dependency - must be installed in your project)
+- **React-DOM 19.0+**
+
+Install with:
+```bash
+pnpm add react@^19.0.0 react-dom@^19.0.0
+```
+
+---
+
+## 🔧 Troubleshooting
+
+### "Module not found" error
+
+**Solution:** Ensure React 19+ is installed:
+```bash
+pnpm add react@^19.0.0 react-dom@^19.0.0
+```
+
+### GitHub Packages authentication fails
+
+**Solutions:**
+1. Verify your Personal Access Token (PAT) has `read:packages` scope
+2. Check `.npmrc` has correct token and registry URL
+3. Ensure username is correct: `@edgar-treischl` (not `@edgar` or `@dash-master`)
+
+### Stale cache after updates
+
+```bash
+# Clear pnpm cache
+pnpm store prune
+
+# Reinstall dependencies
+pnpm install --force
+```
+
+---
+
+## 📈 Getting Updates
+
+**Check latest version:**
+```bash
+# From GitHub Packages
+npm view @edgar-treischl/dash-ui@latest version
+
+# Or manually check: https://github.com/edgar-treischl/dash-ui/releases
+```
+
+**Update to latest:**
+```bash
+pnpm update @edgar-treischl/dash-ui@latest
+```
+
+---
+
+## 🤝 Contributing
+
+To contribute improvements or report issues:
+
+1. Fork the [dash-ui repository](https://github.com/edgar-treischl/dash-ui)
+2. Create a feature branch
+3. Make changes in `src/`
+4. Test thoroughly
+5. Submit a pull request
+
+---
+
+## 📄 License
 
 ISC
