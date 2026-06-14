@@ -110,17 +110,30 @@ pnpm add @edgar-treischl/dash-ui
 
 ### CI/CD with GitHub Packages
 
-The library automatically publishes to GitHub Packages on:
-- **Every push to main branch** - Pre-release version
-- **Every version tag** (e.g., `v1.0.1`) - Stable release
+The library automatically publishes to GitHub Packages when you push to `main` **with a commit message containing "release"**.
 
-To publish a new release:
+**To publish a new version:**
+
+1. **Update the version in `package.json`:**
+   ```bash
+   # Edit package.json and change the version
+   # e.g., "version": "1.0.1"
+   ```
+
+2. **Commit with "release" keyword:**
+   ```bash
+   git add package.json
+   git commit -m "chore: release v1.0.1"
+   git push
+   # → Automatically published to GitHub Packages!
+   ```
+
+**Any commit message containing "release" will trigger publishing:**
 ```bash
-# 1. Update version in package.json
-# 2. Create and push a git tag
-git tag v1.0.1
-git push origin v1.0.1
-# → Automatically published to GitHub Packages!
+# All of these will publish:
+git commit -m "release: v1.0.1"
+git commit -m "feat: update component (release)"
+git commit -m "chore: release v1.0.1"
 ```
 
 ---
