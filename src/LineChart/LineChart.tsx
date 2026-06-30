@@ -2,6 +2,7 @@ import { memo, useState } from 'react'
 import { SCHOOL_TYPE_COLORS, SCHOOL_TYPES, CHART_WIDTH, CHART_HEIGHT, CHART_PADDING } from '../retention'
 import type { SchoolType, SchoolYear } from '../retention'
 import { formatNumber } from '../utils/formatters'
+import './LineChart.css'
 
 /**
  * Data structure for retention data points
