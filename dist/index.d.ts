@@ -72,4 +72,36 @@ declare const YearSelect: react.MemoExoticComponent<typeof YearSelectComponent>;
 
 declare function SelectIcon(): react.JSX.Element;
 
-export { BarPlot, SelectIcon, YearSelect, type YearSelectProps };
+/**
+ * Data structure for retention data points
+ */
+type RetentionDatum = {
+    syear: SchoolYear;
+    stype: SchoolType;
+    group: string;
+    number: number;
+    year: string;
+    n_overall: number;
+    percent: number;
+};
+type LineChartProps = {
+    data: Map<SchoolType, RetentionDatum[]>;
+    minYear: number;
+    maxYear: number;
+};
+/**
+ * Line chart component - Multi-series line chart for retention trends over time
+ * @param data - Map of school types to retention data points
+ * @param minYear - Minimum year to display
+ * @param maxYear - Maximum year to display
+ */
+declare function LineChartComponent({ data, minYear, maxYear }: LineChartProps): react.JSX.Element;
+declare const LineChart: react.MemoExoticComponent<typeof LineChartComponent>;
+
+/**
+ * Legend component for showing school type colors
+ */
+declare function LineChartLegendComponent(): react.JSX.Element;
+declare const LineChartLegend: react.MemoExoticComponent<typeof LineChartLegendComponent>;
+
+export { BarPlot, LineChart, LineChartLegend, type RetentionDatum, SelectIcon, YearSelect, type YearSelectProps };
