@@ -23,6 +23,7 @@ __export(index_exports, {
   BarPlot: () => BarPlot,
   LineChart: () => LineChart,
   LineChartLegend: () => LineChartLegend,
+  PupilsIcon: () => PupilsIcon,
   SelectIcon: () => SelectIcon,
   TeachersIcon: () => TeachersIcon,
   YearSelect: () => YearSelect
@@ -222,6 +223,29 @@ function TeachersIcon({ className }) {
   );
 }
 
+// src/Icons/PupilsIcon.tsx
+var import_jsx_runtime5 = require("react/jsx-runtime");
+function PupilsIcon({ className }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(
+    "svg",
+    {
+      width: "24",
+      height: "24",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      className,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("circle", { cx: "12", cy: "8", r: "3" }),
+        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("path", { d: "M6.5 19c.8-3 2.9-5 5.5-5s4.7 2 5.5 5" })
+      ]
+    }
+  );
+}
+
 // src/LineChart/LineChart.tsx
 var import_react3 = require("react");
 
@@ -231,7 +255,7 @@ function formatNumber(value) {
 }
 
 // src/LineChart/LineChart.tsx
-var import_jsx_runtime5 = require("react/jsx-runtime");
+var import_jsx_runtime6 = require("react/jsx-runtime");
 function LineChartComponent({ data, minYear, maxYear }) {
   const [hoveredPoint, setHoveredPoint] = (0, import_react3.useState)(null);
   const allYearsSet = /* @__PURE__ */ new Set();
@@ -255,7 +279,7 @@ function LineChartComponent({ data, minYear, maxYear }) {
     return CHART_PADDING.left + (yearNum - Math.min(...allYears)) / yearRange * chartInnerWidth;
   };
   const yTicks = [0, Math.round(maxRetention / 4), Math.round(maxRetention / 2), Math.round(maxRetention * 3 / 4), maxRetention];
-  return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
     "svg",
     {
       viewBox: `0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`,
@@ -265,8 +289,8 @@ function LineChartComponent({ data, minYear, maxYear }) {
       children: [
         yTicks.map((tick) => {
           const y = yScale(tick);
-          return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("g", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+          return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("g", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
               "line",
               {
                 x1: CHART_PADDING.left,
@@ -278,7 +302,7 @@ function LineChartComponent({ data, minYear, maxYear }) {
                 strokeWidth: 1
               }
             ),
-            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
               "text",
               {
                 x: CHART_PADDING.left - 10,
@@ -295,7 +319,7 @@ function LineChartComponent({ data, minYear, maxYear }) {
         allYears.map((year) => {
           const x = xScale(year.toString());
           const schoolYear = schoolYearMap.get(year.toString()) || year.toString();
-          return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+          return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
             "text",
             {
               x,
@@ -309,7 +333,7 @@ function LineChartComponent({ data, minYear, maxYear }) {
             `x-${year}`
           );
         }),
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
           "line",
           {
             x1: CHART_PADDING.left,
@@ -321,7 +345,7 @@ function LineChartComponent({ data, minYear, maxYear }) {
             strokeWidth: 2
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
           "line",
           {
             x1: CHART_PADDING.left,
@@ -333,7 +357,7 @@ function LineChartComponent({ data, minYear, maxYear }) {
             strokeWidth: 2
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
           "text",
           {
             x: CHART_WIDTH / 2,
@@ -351,7 +375,7 @@ function LineChartComponent({ data, minYear, maxYear }) {
             ]
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
           "text",
           {
             x: 15,
@@ -373,8 +397,8 @@ function LineChartComponent({ data, minYear, maxYear }) {
             const y = yScale(d.number);
             return i === 0 ? `M ${x} ${y}` : `L ${x} ${y}`;
           }).join(" ");
-          return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("g", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+          return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("g", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
               "path",
               {
                 d: pathData,
@@ -388,7 +412,7 @@ function LineChartComponent({ data, minYear, maxYear }) {
             schoolTypeData.map((d) => {
               const cx = xScale(d.year);
               const cy = yScale(d.number);
-              return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+              return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
                 "circle",
                 {
                   cx,
@@ -415,8 +439,8 @@ function LineChartComponent({ data, minYear, maxYear }) {
           const tooltipWidth = 130;
           const tooltipPadding = 10;
           const tooltipY = hoveredPoint.y - tooltipHeight - tooltipPadding < CHART_PADDING.top ? hoveredPoint.y + tooltipPadding + 10 : hoveredPoint.y - tooltipHeight - tooltipPadding;
-          return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("g", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+          return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("g", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
               "rect",
               {
                 x: hoveredPoint.x - tooltipWidth / 2,
@@ -431,7 +455,7 @@ function LineChartComponent({ data, minYear, maxYear }) {
                 filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))"
               }
             ),
-            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
               "text",
               {
                 x: hoveredPoint.x,
@@ -444,7 +468,7 @@ function LineChartComponent({ data, minYear, maxYear }) {
                 children: hoveredPoint.schoolType
               }
             ),
-            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
               "text",
               {
                 x: hoveredPoint.x,
@@ -457,7 +481,7 @@ function LineChartComponent({ data, minYear, maxYear }) {
                 children: hoveredPoint.syear
               }
             ),
-            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
               "text",
               {
                 x: hoveredPoint.x,
@@ -480,12 +504,12 @@ var LineChart = (0, import_react3.memo)(LineChartComponent);
 
 // src/LineChart/LineChartLegend.tsx
 var import_react4 = require("react");
-var import_jsx_runtime6 = require("react/jsx-runtime");
+var import_jsx_runtime7 = require("react/jsx-runtime");
 function LineChartLegendComponent() {
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "line-chart__legend", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "line-chart__legend-label", children: "Schultyp" }),
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("ul", { className: "line-chart__legend-list", children: SCHOOL_TYPES.map((schoolType) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("li", { className: "line-chart__legend-item", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "line-chart__legend", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "line-chart__legend-label", children: "Schultyp" }),
+    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("ul", { className: "line-chart__legend-list", children: SCHOOL_TYPES.map((schoolType) => /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("li", { className: "line-chart__legend-item", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
         "span",
         {
           className: "line-chart__legend-swatch",
@@ -502,6 +526,7 @@ var LineChartLegend = (0, import_react4.memo)(LineChartLegendComponent);
   BarPlot,
   LineChart,
   LineChartLegend,
+  PupilsIcon,
   SelectIcon,
   TeachersIcon,
   YearSelect

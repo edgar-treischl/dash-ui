@@ -3,6 +3,7 @@ export { BarPlot } from "./BarPlot/BarPlot";
 export { YearSelect } from "./Selector/YearSelect";
 export { SelectIcon } from "./Icons/SelectIcon";
 export { TeachersIcon } from "./Icons/TeachersIcon";
+export { PupilsIcon } from "./Icons/PupilsIcon";
 export { LineChart } from "./LineChart/LineChart";
 export { LineChartLegend } from "./LineChart/LineChartLegend";
 export type { YearSelectProps } from "./Selector/YearSelect";
