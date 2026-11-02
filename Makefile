@@ -16,7 +16,7 @@ build:
 	pnpm build
 
 lint:
-	pnpm build
+	pnpm exec tsc --noEmit
 
 install:
 	pnpm install
