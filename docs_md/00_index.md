@@ -5,7 +5,7 @@ category: Guides
 ---
 
 
-Centralized telemetry solution for Vite Module Federation micro frontends using OpenTelemetry.
+Here my guide.
 
 ## Features
 

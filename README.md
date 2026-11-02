@@ -1,30 +1,21 @@
 # @edgar-treischl/dash-ui
 
-Reusable React 19 UI components for school data visualization. Built with TypeScript, optimized for performance, and published to GitHub Packages.
+Reusable UI components for Dash, published to GitHub Packages.
 
 ## ✨ Features
 
-- ✅ **React 19** - Latest React features and performance improvements
-- ✅ **TypeScript** - Full type support with included definitions
-- ✅ **Dual Format** - ESM and CommonJS for maximum compatibility
-- ✅ **Lightweight** - No external dependencies (React is peer dependency)
-- ✅ **Tree-Shakeable** - Only import what you need
-- ✅ **Performance Optimized** - Components use memo() to prevent unnecessary re-renders
-- ✅ **CI/CD Ready** - Automatic publishing to GitHub Packages
+- **React 19** - Latest React features and performance improvements
+- **TypeScript** - Full type support with included definitions
+- **Dual Format** - ESM and CommonJS for maximum compatibility
+- **Lightweight** - No external dependencies (React is peer dependency)
+- **Tree-Shakeable** - Only import what you need
+- **Performance Optimized** - Components use memo() to prevent unnecessary re-renders
+- **CI/CD Ready** - Automatic publishing to GitHub Packages
 
----
+
 
 ## 🚀 Quick Start
 
-### Installation
-
-```bash
-# Option 1: Direct from GitHub (Quick development)
-pnpm add github:edgar-treischl/dash-ui
-
-# Option 2: GitHub Packages (Production/CI-CD)
-pnpm add @edgar-treischl/dash-ui
-```
 
 ### Usage
 
@@ -42,7 +33,7 @@ export function MyComponent() {
 }
 ```
 
----
+
 
 ## 📦 Installation Options
 
@@ -77,7 +68,7 @@ pnpm update @edgar-treischl/dash-ui
 
 ---
 
-### Option 2: GitHub Packages Registry (Recommended for CI/CD)
+### Option 2: GitHub Packages Registry
 
 For automated deployments and production installations, use GitHub Packages.
 
@@ -100,13 +91,6 @@ For automated deployments and production installations, use GitHub Packages.
    npm config set //npm.pkg.github.com/:_authToken YOUR_PERSONAL_ACCESS_TOKEN
    ```
 
-#### Install from GitHub Packages
-
-```bash
-pnpm add @edgar-treischl/dash-ui
-```
-
----
 
 ### CI/CD with GitHub Packages
 
@@ -174,45 +158,15 @@ function MyComponent() {
 }
 ```
 
----
 
-### Supported School Types
 
-- **GS** - Grundschulen (Primary Schools)
-- **MS** - Mittelschulen (Middle Schools)
-- **RS** - Realschulen (Secondary Schools)
-- **GY** - Gymnasien (Gymnasia)
-- **IGS** - Integrierte Gesamtschulen (Integrated Comprehensive Schools)
+
 
 ---
 
-## 📋 Requirements
 
-- **React 19.0+** (peer dependency - must be installed in your project)
-- **React-DOM 19.0+**
 
-Install with:
-```bash
-pnpm add react@^19.0.0 react-dom@^19.0.0
-```
 
----
-
-## 🔧 Troubleshooting
-
-### "Module not found" error
-
-**Solution:** Ensure React 19+ is installed:
-```bash
-pnpm add react@^19.0.0 react-dom@^19.0.0
-```
-
-### GitHub Packages authentication fails
-
-**Solutions:**
-1. Verify your Personal Access Token (PAT) has `read:packages` scope
-2. Check `.npmrc` has correct token and registry URL
-3. Ensure username is correct: `@edgar-treischl` (not `@edgar` or `@dash-master`)
 
 ### Stale cache after updates
 
@@ -224,37 +178,3 @@ pnpm store prune
 pnpm install --force
 ```
 
----
-
-## 📈 Getting Updates
-
-**Check latest version:**
-```bash
-# From GitHub Packages
-npm view @edgar-treischl/dash-ui@latest version
-
-# Or manually check: https://github.com/edgar-treischl/dash-ui/releases
-```
-
-**Update to latest:**
-```bash
-pnpm update @edgar-treischl/dash-ui@latest
-```
-
----
-
-## 🤝 Contributing
-
-To contribute improvements or report issues:
-
-1. Fork the [dash-ui repository](https://github.com/edgar-treischl/dash-ui)
-2. Create a feature branch
-3. Make changes in `src/`
-4. Test thoroughly
-5. Submit a pull request
-
----
-
-## 📄 License
-
-ISC

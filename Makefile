@@ -16,7 +16,7 @@ build:
 	pnpm build
 
 lint:
-	cd packages/ui && pnpm build
+	pnpm build
 
 install:
 	pnpm install
