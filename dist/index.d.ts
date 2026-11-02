@@ -70,17 +70,26 @@ type YearSelectProps = {
 declare function YearSelectComponent({ selectedYear, onYearChange, label, disabled, }: YearSelectProps): react.JSX.Element;
 declare const YearSelect: react.MemoExoticComponent<typeof YearSelectComponent>;
 
-declare function SelectIcon(): react.JSX.Element;
+type IconProps$2 = {
+    className?: string;
+    width?: number | string;
+    height?: number | string;
+};
+declare function SelectIcon({ className, width, height, }: IconProps$2): react.JSX.Element;
 
 type IconProps$1 = {
     className?: string;
+    width?: number | string;
+    height?: number | string;
 };
-declare function TeachersIcon({ className }: IconProps$1): react.JSX.Element;
+declare function TeachersIcon({ className, width, height, }: IconProps$1): react.JSX.Element;
 
-type IconProps = {
+interface IconProps {
     className?: string;
-};
-declare function PupilsIcon({ className }: IconProps): react.JSX.Element;
+    width?: number | string;
+    height?: number | string;
+}
+declare function PupilsIcon({ className, width, height, }: IconProps): react.JSX.Element;
 
 /**
  * Data structure for retention data points

@@ -143,16 +143,20 @@ var import_react2 = require("react");
 
 // src/Icons/SelectIcon.tsx
 var import_jsx_runtime2 = require("react/jsx-runtime");
-function SelectIcon() {
+function SelectIcon({
+  className,
+  width = 16,
+  height = 16
+}) {
   return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
     "svg",
     {
-      width: "16",
-      height: "16",
+      width,
+      height,
       viewBox: "0 0 16 16",
       fill: "none",
       xmlns: "http://www.w3.org/2000/svg",
-      className: "select-icon-svg",
+      className: className ?? "select-icon-svg",
       "aria-hidden": "true",
       children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         "path",
@@ -201,12 +205,16 @@ var YearSelect = (0, import_react2.memo)(YearSelectComponent);
 
 // src/Icons/TeachersIcon.tsx
 var import_jsx_runtime4 = require("react/jsx-runtime");
-function TeachersIcon({ className }) {
+function TeachersIcon({
+  className,
+  width = 24,
+  height = 24
+}) {
   return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
     "svg",
     {
-      width: "24",
-      height: "24",
+      width,
+      height,
       viewBox: "0 0 24 24",
       fill: "none",
       stroke: "currentColor",
@@ -225,12 +233,16 @@ function TeachersIcon({ className }) {
 
 // src/Icons/PupilsIcon.tsx
 var import_jsx_runtime5 = require("react/jsx-runtime");
-function PupilsIcon({ className }) {
+function PupilsIcon({
+  className,
+  width = 24,
+  height = 24
+}) {
   return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(
     "svg",
     {
-      width: "24",
-      height: "24",
+      width,
+      height,
       viewBox: "0 0 24 24",
       fill: "none",
       stroke: "currentColor",

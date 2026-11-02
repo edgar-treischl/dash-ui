@@ -111,16 +111,20 @@ import { memo as memo2 } from "react";
 
 // src/Icons/SelectIcon.tsx
 import { jsx as jsx2 } from "react/jsx-runtime";
-function SelectIcon() {
+function SelectIcon({
+  className,
+  width = 16,
+  height = 16
+}) {
   return /* @__PURE__ */ jsx2(
     "svg",
     {
-      width: "16",
-      height: "16",
+      width,
+      height,
       viewBox: "0 0 16 16",
       fill: "none",
       xmlns: "http://www.w3.org/2000/svg",
-      className: "select-icon-svg",
+      className: className ?? "select-icon-svg",
       "aria-hidden": "true",
       children: /* @__PURE__ */ jsx2(
         "path",
@@ -169,12 +173,16 @@ var YearSelect = memo2(YearSelectComponent);
 
 // src/Icons/TeachersIcon.tsx
 import { jsx as jsx4, jsxs as jsxs3 } from "react/jsx-runtime";
-function TeachersIcon({ className }) {
+function TeachersIcon({
+  className,
+  width = 24,
+  height = 24
+}) {
   return /* @__PURE__ */ jsxs3(
     "svg",
     {
-      width: "24",
-      height: "24",
+      width,
+      height,
       viewBox: "0 0 24 24",
       fill: "none",
       stroke: "currentColor",
@@ -193,12 +201,16 @@ function TeachersIcon({ className }) {
 
 // src/Icons/PupilsIcon.tsx
 import { jsx as jsx5, jsxs as jsxs4 } from "react/jsx-runtime";
-function PupilsIcon({ className }) {
+function PupilsIcon({
+  className,
+  width = 24,
+  height = 24
+}) {
   return /* @__PURE__ */ jsxs4(
     "svg",
     {
-      width: "24",
-      height: "24",
+      width,
+      height,
       viewBox: "0 0 24 24",
       fill: "none",
       stroke: "currentColor",
