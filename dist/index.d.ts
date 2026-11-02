@@ -72,6 +72,11 @@ declare const YearSelect: react.MemoExoticComponent<typeof YearSelectComponent>;
 
 declare function SelectIcon(): react.JSX.Element;
 
+type IconProps = {
+    className?: string;
+};
+declare function TeachersIcon({ className }: IconProps): react.JSX.Element;
+
 /**
  * Data structure for retention data points
  */
@@ -104,4 +109,4 @@ declare const LineChart: react.MemoExoticComponent<typeof LineChartComponent>;
 declare function LineChartLegendComponent(): react.JSX.Element;
 declare const LineChartLegend: react.MemoExoticComponent<typeof LineChartLegendComponent>;
 
-export { BarPlot, LineChart, LineChartLegend, type RetentionDatum, SelectIcon, YearSelect, type YearSelectProps };
+export { BarPlot, LineChart, LineChartLegend, type RetentionDatum, SelectIcon, TeachersIcon, YearSelect, type YearSelectProps };

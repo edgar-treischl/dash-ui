@@ -1,24 +1,19 @@
-.PHONY: help storybook storybook-build build lint install clean
+.PHONY: help build lint install clean reinstall publish bump-version
 
 help:
-	@echo "Dash Monorepo - Available commands:"
+	@echo "Dash UI Library - Available commands:"
 	@echo ""
-	@echo "  make storybook        Start Storybook dev server (HMR enabled)"
-	@echo "  make storybook-build  Build Storybook for production"
 	@echo "  make build            Build UI library for distribution"
 	@echo "  make lint             Type-check and lint code"
 	@echo "  make install          Install all dependencies"
-	@echo "  make clean            Remove dist/ and build artifacts"
+	@echo "  make clean            Remove dist/ and node_modules (clean state)"
+	@echo "  make reinstall        Clean and reinstall dependencies (fixes stale caches)"
+	@echo "  make bump-version V=<version>  Bump version (e.g., make bump-version V=1.0.1)"
+	@echo "  make publish          Build and publish to GitHub Packages (requires gh CLI)"
 	@echo ""
 
-storybook:
-	cd packages/ui && pnpm storybook
-
-storybook-build:
-	cd packages/ui && pnpm storybook:build
-
 build:
-	cd packages/ui && pnpm build
+	pnpm build
 
 lint:
 	cd packages/ui && pnpm build
@@ -26,8 +21,32 @@ lint:
 install:
 	pnpm install
 
+bump-version:
+	@if [ -z "$(V)" ]; then \
+		echo "Error: Version required. Usage: make bump-version V=1.0.1"; \
+		exit 1; \
+	fi
+	@echo "Bumping version to $(V)..."
+	@sed -i '' 's/"version": "[^"]*"/"version": "$(V)"/' package.json
+	@echo "Version bumped to $(V)"
+
+publish: build
+	@echo "Publishing to GitHub Packages..."
+	@if ! command -v gh &> /dev/null; then \
+		echo "Error: gh CLI is not installed. Install it from https://github.com/cli/cli"; \
+		exit 1; \
+	fi
+	pnpm publish --registry https://npm.pkg.github.com
+	@echo "✅ Package published successfully!"
+
 clean:
-	rm -rf packages/ui/dist
-	rm -rf packages/ui/storybook-static
+	rm -rf dist
 	rm -rf node_modules
-	find . -name "node_modules" -type d -prune -exec rm -rf {} \; 2>/dev/null || true
+	rm -rf pnpm-lock.yaml
+	@echo "✅ Cleaned dist/, node_modules/, and lock file"
+
+reinstall: clean
+	@echo "📦 Reinstalling dependencies..."
+	pnpm install
+	@echo "✅ Dependencies reinstalled"
+	@echo "💡 Tip: Run 'make build' to rebuild the distribution"
