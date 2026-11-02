@@ -1,12 +1,18 @@
-type IconProps = {
+export interface IconProps {
   className?: string;
-};
+  width?: number | string;
+  height?: number | string;
+}
 
-export function PupilsIcon({ className }: IconProps) {
+export function PupilsIcon({
+  className,
+  width = 24,
+  height = 24,
+}: IconProps) {
   return (
     <svg
-      width="24"
-      height="24"
+      width={width}
+      height={height}
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"

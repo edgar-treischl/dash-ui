@@ -1,14 +1,24 @@
 import './SelectIcon.css'
 
-export function SelectIcon() {
+type IconProps {
+  className?: string;
+  width?: number | string;
+  height?: number | string;
+}
+
+export function SelectIcon({
+  className,
+  width = 16,
+  height = 16,
+}: IconProps) {
   return (
     <svg
-      width="16"
-      height="16"
+      width={width}
+      height={height}
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="select-icon-svg"
+      className={className ?? 'select-icon-svg'}
       aria-hidden="true"
     >
       <path
@@ -19,5 +29,5 @@ export function SelectIcon() {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }

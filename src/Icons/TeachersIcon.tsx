@@ -1,12 +1,19 @@
-type IconProps = {
-  className?: string;
-};
 
-export function TeachersIcon({ className }: IconProps) {
+type IconProps {
+  className?: string;
+  width?: number | string;
+  height?: number | string;
+}
+
+export function TeachersIcon({
+  className,
+  width = 24,
+  height = 24,
+}: IconProps) {
   return (
     <svg
-      width="24"
-      height="24"
+      width={width}
+      height={height}
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
