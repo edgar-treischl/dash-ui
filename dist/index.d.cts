@@ -19,6 +19,13 @@ type ComponentPeek = {
     categories: string[];
     madeFrom: string[];
 };
+/**
+ * Horizontal bar chart component for displaying retention rates by school type
+ *
+ * @param data - Array of school type data with percentages
+ * @param year - School year for display in axis label
+ * @param maxPercent - Optional max percent for x-axis scale (defaults to max of data or 50)
+ */
 declare function BarPlotComponent({ data, year, maxPercent: customMaxPercent }: BarPlotProps): react.JSX.Element;
 declare const BarPlot: react.NamedExoticComponent<BarPlotProps> & {
     readonly type: typeof BarPlotComponent;

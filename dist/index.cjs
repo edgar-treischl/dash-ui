@@ -58,13 +58,6 @@ function formatPercent(value) {
   return `${value.toFixed(2)}%`;
 }
 var SCHOOL_TYPES = ["GS", "MS", "RS", "GY", "IGS"];
-var SCHOOL_TYPE_LABELS = {
-  "GS": "GS",
-  "MS": "MS",
-  "RS": "RS",
-  "GY": "GY",
-  "IGS": "IGS"
-};
 var SCHOOL_YEARS = [
   "2024/25",
   "2023/24",
@@ -85,26 +78,100 @@ function BarPlotComponent({ data, year, maxPercent: customMaxPercent }) {
     "svg",
     {
       viewBox: `0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`,
-      width: CHART_WIDTH,
-      height: CHART_HEIGHT,
-      style: { border: "1px solid #eee" },
+      className: "dash-ui__chart",
+      role: "img",
+      "aria-label": `Balkendiagramm der Wiederholungsquoten f\xFCr ${year}`,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", { x: CHART_PADDING.left, y: CHART_PADDING.top - 10, fontSize: "12", children: year }),
+        [0, 10, 20, 30, 40, 50].map((tick) => {
+          const x = CHART_PADDING.left + xScale(tick);
+          return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("g", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              "line",
+              {
+                x1: x,
+                x2: x,
+                y1: CHART_PADDING.top,
+                y2: CHART_HEIGHT - CHART_PADDING.bottom,
+                className: "dash-ui__grid-line",
+                stroke: "#e0e0e0",
+                strokeWidth: "1"
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              "text",
+              {
+                x,
+                y: CHART_HEIGHT - CHART_PADDING.bottom + 24,
+                textAnchor: "middle",
+                className: "dash-ui__axis-label",
+                fontSize: "14",
+                fill: "#666",
+                children: [
+                  tick,
+                  "%"
+                ]
+              }
+            )
+          ] }, `grid-${tick}`);
+        }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          "line",
+          {
+            x1: CHART_PADDING.left,
+            x2: CHART_WIDTH - CHART_PADDING.right,
+            y1: CHART_HEIGHT - CHART_PADDING.bottom,
+            y2: CHART_HEIGHT - CHART_PADDING.bottom,
+            className: "dash-ui__axis-line",
+            stroke: "#333",
+            strokeWidth: "2"
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          "line",
+          {
+            x1: CHART_PADDING.left,
+            x2: CHART_PADDING.left,
+            y1: CHART_PADDING.top,
+            y2: CHART_HEIGHT - CHART_PADDING.bottom,
+            className: "dash-ui__axis-line",
+            stroke: "#333",
+            strokeWidth: "2"
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          "text",
+          {
+            x: CHART_WIDTH / 2,
+            y: CHART_HEIGHT - 10,
+            textAnchor: "middle",
+            className: "dash-ui__axis-title",
+            fontSize: "16",
+            fontWeight: "500",
+            fill: "#000",
+            children: [
+              "Wiederholungsquote (%) im Jahr ",
+              year
+            ]
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          "text",
+          {
+            x: 15,
+            y: CHART_HEIGHT / 2,
+            textAnchor: "middle",
+            className: "dash-ui__axis-title",
+            transform: `rotate(-90 15 ${CHART_HEIGHT / 2})`,
+            fontSize: "16",
+            fontWeight: "500",
+            fill: "#000",
+            children: "Schultyp"
+          }
+        ),
         data.map((item, index) => {
           const y = CHART_PADDING.top + index * (barHeight + barSpacing);
           const width = xScale(item.percent);
           return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("g", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-              "text",
-              {
-                x: CHART_PADDING.left - 10,
-                y: y + barHeight / 2,
-                textAnchor: "end",
-                fontSize: "12",
-                fill: "#666",
-                children: SCHOOL_TYPE_LABELS[item.type]
-              }
-            ),
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
               "rect",
               {
@@ -112,15 +179,32 @@ function BarPlotComponent({ data, year, maxPercent: customMaxPercent }) {
                 y,
                 width,
                 height: barHeight,
-                fill: SCHOOL_TYPE_COLORS[item.type]
+                fill: SCHOOL_TYPE_COLORS[item.type],
+                opacity: 0.8
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              "text",
+              {
+                x: CHART_PADDING.left - 10,
+                y: y + barHeight / 2 + 5,
+                textAnchor: "end",
+                className: "dash-ui__axis-label",
+                fontSize: "18",
+                fontWeight: "600",
+                fill: "#000",
+                children: item.type
               }
             ),
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
               "text",
               {
                 x: CHART_PADDING.left + width + 10,
-                y: y + barHeight / 2,
-                fontSize: "12",
+                y: y + barHeight / 2 + 5,
+                className: "dash-ui__bar-label",
+                fontSize: "14",
+                fontWeight: "600",
+                fill: "#000",
                 children: formatPercent(item.percent)
               }
             )
