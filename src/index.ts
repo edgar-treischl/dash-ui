@@ -6,5 +6,7 @@ export { TeachersIcon } from "./Icons/TeachersIcon";
 export { PupilsIcon } from "./Icons/PupilsIcon";
 export { LineChart } from "./LineChart/LineChart";
 export { LineChartLegend } from "./LineChart/LineChartLegend";
+export { BavariaBayMap } from "./BavariaRegionMap/BavariaRegionMap";
 export type { YearSelectProps } from "./Selector/YearSelect";
 export type { RetentionDatum } from "./LineChart/LineChart";
+export type { BavariaBayMapProps } from "./BavariaRegionMap/BavariaRegionMap";
