@@ -131,10 +131,24 @@ declare function LineChartLegendComponent(): react.JSX.Element;
 declare const LineChartLegend: react.MemoExoticComponent<typeof LineChartLegendComponent>;
 
 type MetricKey = "students" | "avgClassSize" | "schools" | "studentTeacherRatio" | "teachersFTE" | "migrantPercent";
+/** District data item interface */
+interface DistrictDataItem {
+    key: string;
+    RS: string;
+    studentsPercent?: number;
+    avgClassSize?: number;
+    schools?: number;
+    studentTeacherRatio?: number;
+    teachersFTE?: number;
+    migrantPercent?: number;
+    [key: string]: string | number | undefined;
+}
 /** Props for the BavariaBayMap component */
 type BavariaBayMapProps = {
     /** Selected metric to visualize on the map */
     selectedMetric: MetricKey;
+    /** Array of district data items to visualize */
+    data: DistrictDataItem[];
     /** Whether to show the legend; defaults to true */
     showLegend?: boolean;
     /** SVG width in pixels; defaults to 680 */
@@ -144,7 +158,7 @@ type BavariaBayMapProps = {
     /** Callback fired when user hovers over a district */
     onDistrictHover?: (districtKey: string | null, value: number | null) => void;
 };
-declare function BavariaBayMapComponent({ selectedMetric, showLegend, width, height, onDistrictHover, }: BavariaBayMapProps): react.JSX.Element;
+declare function BavariaBayMapComponent({ selectedMetric, data, showLegend, width, height, onDistrictHover, }: BavariaBayMapProps): react.JSX.Element;
 declare const BavariaBayMap: react.MemoExoticComponent<typeof BavariaBayMapComponent>;
 
 export { BarPlot, BavariaBayMap, type BavariaBayMapProps, LineChart, LineChartLegend, PupilsIcon, type RetentionDatum, SelectIcon, TeachersIcon, YearSelect, type YearSelectProps };

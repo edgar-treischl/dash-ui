@@ -5,7 +5,6 @@ import { geoMercator, geoPath } from "d3-geo";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import type { FeatureCollection } from "geojson";
 import { bavariaDistrictsTopoJSON } from "../data/bavariaDistrictsData";
-import { districtData } from "../data/districtData";
 
 // Colour ramp mirrors R/mapRegion.R (low_colour, mid_colour, high_colour)
 const LOW_COLOUR = "#F1F5F8";
@@ -21,10 +20,25 @@ type MetricKey =
   | "teachersFTE"
   | "migrantPercent";
 
+/** District data item interface */
+export interface DistrictDataItem {
+  key: string;
+  RS: string;
+  studentsPercent?: number;
+  avgClassSize?: number;
+  schools?: number;
+  studentTeacherRatio?: number;
+  teachersFTE?: number;
+  migrantPercent?: number;
+  [key: string]: string | number | undefined;
+}
+
 /** Props for the BavariaBayMap component */
-type BavariaBayMapProps = {
+export type BavariaBayMapProps = {
   /** Selected metric to visualize on the map */
   selectedMetric: MetricKey;
+  /** Array of district data items to visualize */
+  data: DistrictDataItem[];
   /** Whether to show the legend; defaults to true */
   showLegend?: boolean;
   /** SVG width in pixels; defaults to 680 */
@@ -55,23 +69,23 @@ const rsFromFeatureId = (id: string | number | undefined): string =>
 
 // Map a selected UI metric to the matching field on district-level data
 const districtValueForMetric = (
-  district: (typeof districtData)[number] | undefined,
+  district: DistrictDataItem | undefined,
   metric: MetricKey
 ): number | null => {
   if (!district) return null;
   switch (metric) {
     case "students":
-      return district.studentsPercent;
+      return district.studentsPercent ?? null;
     case "avgClassSize":
-      return district.avgClassSize;
+      return district.avgClassSize ?? null;
     case "schools":
-      return district.schools;
+      return district.schools ?? null;
     case "studentTeacherRatio":
-      return district.studentTeacherRatio;
+      return district.studentTeacherRatio ?? null;
     case "migrantPercent":
-      return district.migrantPercent;
+      return district.migrantPercent ?? null;
     case "teachersFTE":
-      return district.teachersFTE;
+      return district.teachersFTE ?? null;
     default:
       return null;
   }
@@ -79,6 +93,7 @@ const districtValueForMetric = (
 
 function BavariaBayMapComponent({
   selectedMetric,
+  data,
   showLegend = true,
   width = SVG_WIDTH,
   height = SVG_HEIGHT,
@@ -103,7 +118,7 @@ function BavariaBayMapComponent({
       const geojsonData = feature(topology, object) as FeatureCollection;
 
       // Join geometries with district data via RS (no filtering - show all Bavaria)
-      const districtByRS = new Map(districtData.map((d) => [d.RS, d]));
+      const districtByRS = new Map(data.map((d) => [d.RS, d]));
 
       // Create colour scale using the same low/mid/high gradient as ggplot's scale_fill_gradientn
       const districtValues = geojsonData.features
@@ -171,7 +186,7 @@ function BavariaBayMapComponent({
         maxValue: 1,
       };
     }
-  }, [selectedMetric, width, height]);
+  }, [selectedMetric, data, width, height]);
 
   const handleMouseMove = (
     e: React.MouseEvent<SVGPathElement>,
@@ -380,4 +395,3 @@ function BavariaBayMapComponent({
 }
 
 export const BavariaBayMap = memo(BavariaBayMapComponent);
-export type { BavariaBayMapProps };
