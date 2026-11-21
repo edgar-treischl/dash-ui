@@ -2,7 +2,7 @@
 
 Reusable UI components for Dash, published to GitHub Packages.
 
-## ✨ Features
+## Features
 
 - **React 19** - Latest React features and performance improvements
 - **TypeScript** - Full type support with included definitions
@@ -14,7 +14,7 @@ Reusable UI components for Dash, published to GitHub Packages.
 
 
 
-## 🚀 Quick Start
+## Quick Start
 
 
 ### Usage
@@ -35,7 +35,7 @@ export function MyComponent() {
 
 
 
-## 📦 Installation Options
+## 📦 Installation
 
 ### Option 1: Direct from GitHub Repository
 
@@ -53,6 +53,7 @@ yarn add github:edgar-treischl/dash-ui
 ```
 
 **Using specific version or branch:**
+
 ```bash
 # Install from specific branch
 pnpm add github:edgar-treischl/dash-ui#main
@@ -66,7 +67,7 @@ pnpm add github:edgar-treischl/dash-ui#v1.0.0
 pnpm update @edgar-treischl/dash-ui
 ```
 
----
+
 
 ### Option 2: GitHub Packages Registry
 
@@ -119,51 +120,6 @@ git commit -m "release: v1.0.1"
 git commit -m "feat: update component (release)"
 git commit -m "chore: release v1.0.1"
 ```
-
----
-
-## 📚 Available Components
-
-### BarPlot
-
-Visualize school retention data with a horizontal bar chart.
-
-**Props:**
-```typescript
-interface BarPlotProps {
-  data: BarData[]      // Array of data points
-  year: string         // School year (e.g., "2024/25")
-  maxPercent?: number  // Optional: max percentage for scaling
-}
-
-interface BarData {
-  type: SchoolType     // 'GS' | 'MS' | 'RS' | 'GY' | 'IGS'
-  count: number        // Number of students
-  percent: number      // Retention percentage
-}
-```
-
-**Example:**
-```typescript
-import { BarPlot } from '@edgar-treischl/dash-ui'
-
-function MyComponent() {
-  const data = [
-    { type: 'GS' as const, count: 150, percent: 45.2 },
-    { type: 'MS' as const, count: 120, percent: 38.7 },
-    { type: 'RS' as const, count: 89, percent: 28.5 },
-  ]
-
-  return <BarPlot data={data} year="2024/25" />
-}
-```
-
-
-
-
-
----
-
 
 
 

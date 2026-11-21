@@ -31,12 +31,33 @@ type HoveredPoint = {
   y: number
 } | null
 
+
 /**
- * Line chart component - Multi-series line chart for retention trends over time
- * @param data - Map of school types to retention data points
- * @param minYear - Minimum year to display
- * @param maxYear - Maximum year to display
+ * Multi-series line chart for visualizing school retention trends over time.
+ *
+ * Each school type is represented by an individual line, allowing users
+ * to compare retention trends across different school categories.
+ *
+ * The chart supports restricting the displayed time range using `minYear`
+ * and `maxYear`.
+ *
+ * @param data - Map of school types to their corresponding retention data points.
+ * @param minYear - Minimum year displayed on the x-axis.
+ * @param maxYear - Maximum year displayed on the x-axis.
+ *
+ * @returns The rendered line chart.
+ *
+ * @remarks
+ * Useful for comparing long-term retention trends between different school types.
+ *
+ * @example
+ * <LinePlot
+ *   data={retentionData}
+ *   minYear={2010}
+ *   maxYear={2024}
+ * />
  */
+
 function LineChartComponent({ data, minYear, maxYear }: LineChartProps) {
   const [hoveredPoint, setHoveredPoint] = useState<HoveredPoint>(null)
   

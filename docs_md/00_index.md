@@ -5,59 +5,137 @@ category: Guides
 ---
 
 
-Here my guide.
+Reusable UI components for Dash, published to GitHub Packages.
 
 ## Features
 
-- 🚀 **Zero Configuration** - Initialize once in your Shell, use everywhere
-- 📊 **Full Observability** - Traces, metrics, and logs via OpenTelemetry
-- 🎯 **Core Web Vitals** - Automatic LCP, CLS, INP, FCP, TTFB tracking
-- ⚡ **Lightweight** - Minimal performance overhead
-- 🛡️ **Error Capture** - Uncaught exceptions, promise rejections, React error boundaries
-- 🔗 **Distributed Tracing** - Complete request tracing across MFEs
+- **React 19** - Latest React features and performance improvements
+- **TypeScript** - Full type support with included definitions
+- **Dual Format** - ESM and CommonJS for maximum compatibility
+- **Lightweight** - No external dependencies (React is peer dependency)
+- **Tree-Shakeable** - Only import what you need
+- **Performance Optimized** - Components use memo() to prevent unnecessary re-renders
+- **CI/CD Ready** - Automatic publishing to GitHub Packages
+
+
 
 ## Quick Start
 
+
+### Usage
+
+```typescript
+import { BarPlot } from '@edgar-treischl/dash-ui'
+
+export function MyComponent() {
+  const data = [
+    { type: 'GS' as const, count: 150, percent: 45.2 },
+    { type: 'MS' as const, count: 120, percent: 38.7 },
+    { type: 'RS' as const, count: 89, percent: 28.5 },
+  ]
+
+  return <BarPlot data={data} year="2024/25" />
+}
+```
+
+
+
+## 📦 Installation
+
+### Option 1: Direct from GitHub Repository
+
+Install directly from the dash-ui repository:
+
 ```bash
-npm install @edgar-treischl/dash-telemetry
+# Using pnpm
+pnpm add github:edgar-treischl/dash-ui
+
+# Using npm
+npm install github:edgar-treischl/dash-ui
+
+# Using yarn
+yarn add github:edgar-treischl/dash-ui
 ```
 
-**Shell App:**
-```ts
-import { telemetry } from '@edgar-treischl/dash-telemetry';
+**Using specific version or branch:**
 
-telemetry.init({
-  app: "shell",
-  version: "1.0.0",
-  endpoint: "http://localhost:4317/v1/traces"
-});
+```bash
+# Install from specific branch
+pnpm add github:edgar-treischl/dash-ui#main
+
+# Install from specific tag/release
+pnpm add github:edgar-treischl/dash-ui#v1.0.0
 ```
 
-**MFE App:**
-```ts
-import { telemetry } from '@edgar-treischl/dash-telemetry';
-
-useEffect(() => {
-  telemetry.setContext({
-    mfe: "orders",
-    version: "1.0.0"
-  });
-}, []);
+**Update to latest:**
+```bash
+pnpm update @edgar-treischl/dash-ui
 ```
 
-## Documentation
 
-- [Getting Started](./guide/) - Installation and setup
-- [API Reference](./api/) - Complete API documentation
-- [Examples](./examples/) - Real-world usage examples
-- [Architecture](./guide/architecture) - Design and patterns
 
-## Links
+### Option 2: GitHub Packages Registry
 
-- [GitHub Repository](https://github.com/edgar-treischl/dash-telemetry)
-- [npm Package](https://www.npmjs.com/package/@edgar-treischl/dash-telemetry)
-- [OpenTelemetry](https://opentelemetry.io/)
+For automated deployments and production installations, use GitHub Packages.
 
-## License
+#### Setup (One-time)
 
-MIT
+1. **Create a Personal Access Token (PAT)** in GitHub:
+   - Go to Settings → Developer settings → Personal access tokens → Tokens (classic)
+   - Create new token with `read:packages` scope
+   - Copy the token
+
+2. **Create `.npmrc` file** in your project root:
+   ```
+   @edgar-treischl:registry=https://npm.pkg.github.com
+   //npm.pkg.github.com/:_authToken=YOUR_PERSONAL_ACCESS_TOKEN
+   ```
+
+   Or set globally:
+   ```bash
+   npm config set @edgar-treischl:registry https://npm.pkg.github.com
+   npm config set //npm.pkg.github.com/:_authToken YOUR_PERSONAL_ACCESS_TOKEN
+   ```
+
+
+### CI/CD with GitHub Packages
+
+The library automatically publishes to GitHub Packages when you push to `main` **with a commit message containing "release"**.
+
+**To publish a new version:**
+
+1. **Update the version in `package.json`:**
+   ```bash
+   # Edit package.json and change the version
+   # e.g., "version": "1.0.1"
+   ```
+
+2. **Commit with "release" keyword:**
+   ```bash
+   git add package.json
+   git commit -m "chore: release v1.0.1"
+   git push
+   # → Automatically published to GitHub Packages!
+   ```
+
+**Any commit message containing "release" will trigger publishing:**
+```bash
+# All of these will publish:
+git commit -m "release: v1.0.1"
+git commit -m "feat: update component (release)"
+git commit -m "chore: release v1.0.1"
+```
+
+
+
+
+### Stale cache after updates
+
+```bash
+# Clear pnpm cache
+pnpm store prune
+
+# Reinstall dependencies
+pnpm install --force
+```
+
