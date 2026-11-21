@@ -30,31 +30,6 @@ type HoveredPoint = {
 } | null
 
 
-/**
- * Multi-series line chart for visualizing school retention trends over time.
- *
- * Each school type is represented by an individual line, allowing users
- * to compare retention trends across different school categories.
- *
- * The chart supports restricting the displayed time range using `minYear`
- * and `maxYear`.
- *
- * @param data - Map of school types to their corresponding retention data points.
- * @param minYear - Minimum year displayed on the x-axis.
- * @param maxYear - Maximum year displayed on the x-axis.
- *
- * @returns The rendered line chart.
- *
- * @remarks
- * Useful for comparing long-term retention trends between different school types.
- *
- * @example
- * <LinePlot
- *   data={retentionData}
- *   minYear={2010}
- *   maxYear={2024}
- * />
- */
 function LineChartComponent({ data, minYear, maxYear }: LineChartProps) {
   const [hoveredPoint, setHoveredPoint] = useState<HoveredPoint>(null)
   
@@ -309,4 +284,32 @@ function LineChartComponent({ data, minYear, maxYear }: LineChartProps) {
   )
 }
 
+/**
+ * Multi-series line chart for visualizing school retention trends over time.
+ *
+ * Each school type is represented by an individual line, allowing users
+ * to compare retention trends across different school categories.
+ *
+ * @param data - Map of school types to their corresponding retention data points.
+ * @param minYear - Start year (used for display label only, e.g., "2010/2024").
+ * @param maxYear - End year (used for display label only, e.g., "2010/2024").
+ *
+ * @returns The rendered line chart SVG element.
+ *
+ * @remarks
+ * - All data points are displayed regardless of minYear/maxYear values
+ * - minYear and maxYear only affect the axis label text
+ * - The chart includes interactive tooltips on hover
+ * - X-axis labels show school year format (e.g., "2023/24")
+ * - Y-axis shows the number of repetitions
+ *
+ * @example
+ * ```tsx
+ * <LineChart
+ *   data={retentionDataMap}
+ *   minYear={2010}
+ *   maxYear={2024}
+ * />
+ * ```
+ */
 export const LineChart = memo(LineChartComponent)
