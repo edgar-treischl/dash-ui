@@ -4,9 +4,7 @@ import type { SchoolType, SchoolYear } from '../retention'
 import { formatNumber } from '../utils/formatters'
 import './LineChart.css'
 
-/**
- * Data structure for retention data points
- */
+
 export type RetentionDatum = {
   syear: SchoolYear
   stype: SchoolType
@@ -57,7 +55,6 @@ type HoveredPoint = {
  *   maxYear={2024}
  * />
  */
-
 function LineChartComponent({ data, minYear, maxYear }: LineChartProps) {
   const [hoveredPoint, setHoveredPoint] = useState<HoveredPoint>(null)
   
